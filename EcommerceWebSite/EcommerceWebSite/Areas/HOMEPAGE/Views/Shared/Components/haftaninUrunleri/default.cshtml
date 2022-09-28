@@ -1,0 +1,51 @@
+﻿@using Data.Models
+@model ProductItem
+
+
+
+
+
+
+
+
+                        <div class="col-lg-4">
+                <div class="categories__hot__deal">
+                    <img src="img/product-sale.png" alt="">
+
+                    <div class="hot__deal__sticker">
+                        <span>FIRSAT</span>
+                        <h5>@Model.new_price.ToString("C0")</h5>
+                        
+                    </div>
+                    <div class="hot__deal__sticker hotposition bg-danger">
+                        <span>İNDİRİM</span>
+                        <h5>@Model.old_price.ToString("C0")</h5>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 offset-lg-1">
+                <div class="categories__deal__countdown">
+                    <span>İNANILMAZ - YÜZDE @Model.Discount İNDİRİM</span>
+                    <h2>@Model.Product.ProductName</h2>
+                    <div class="categories__deal__countdown__timer" id="countdown">
+                        <div class="cd-item">
+                            <span>1</span>
+                            <p>Week</p>
+                        </div>
+                        <div class="cd-item">
+                            <span>1</span>
+                            <p>Hours</p>
+                        </div>
+                        <div class="cd-item">
+                            <span>50</span>
+                            <p>Minutes</p>
+                        </div>
+                        <div class="cd-item">
+                            <span>18</span>
+                            <p>Seconds</p>
+                        </div>
+                    </div>
+                    <a href="#" class="primary-btn">Hemen Satın Al</a>
+                </div>
+            </div>

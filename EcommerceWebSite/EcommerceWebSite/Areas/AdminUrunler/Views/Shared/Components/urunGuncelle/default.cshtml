@@ -1,0 +1,83 @@
+﻿@using Data.Models
+@model ProductItem
+
+
+
+
+<form action="/admin/updateUrun" method="POST">
+<div class="card card-danger">
+              
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-6">
+                     @Html.Label("Ürün Adı")
+                   @* @Html.TextBoxFor(i=>i.ProductID, new{@class="form-control"})*@
+
+                    @Html.DropDownListFor(i=>i.ProductID,(List<SelectListItem>)ViewBag.urunAdi,new{@class="form-control"})
+                  </div>
+                   <div class="col-6">
+                     @Html.Label("Ürün item")
+                    @Html.TextBoxFor(i=>i.ProductItemID, new{@class="form-control",@readonly="readonly"})
+                  </div>
+                  <div class="col-6">
+                    @Html.Label("Size")
+                    @Html.TextBoxFor(i=>i.Size, new{@class="form-control"})
+                  </div>
+                   <div class="col-6">
+                    @Html.Label("Renk")
+                    @Html.TextBoxFor(i=>i.Color, new{@class="form-control"})
+                  </div>
+                    <div class="col-6">
+                     @Html.Label("İndirim Durumu")
+                    @Html.TextBoxFor(i=>i.DiscountStatus, new{@class="form-control"})
+                  </div>
+                   <div class="col-6">
+                     @Html.Label("İndirim Yüzdesi")
+                    @Html.TextBoxFor(i=>i.Discount, new{@class="form-control"})
+                  </div>
+                   <div class="col-6">
+                     @Html.Label("İndirimsiz Fiyat")
+                    @Html.TextBoxFor(i=>i.price, new{@class="form-control"})
+                  </div>
+                 
+                   <div class="col-6">
+                     @Html.Label("Stok Adedi")
+                    @Html.TextBoxFor(i=>i.StokAdedi, new{@class="form-control"})
+                  </div>
+                   <div class="col-6">
+                     @Html.Label("Satılan Miktar")
+                    @Html.TextBoxFor(i=>i.SatilanMiktar, new{@class="form-control"})
+                  </div>
+                   <div class="col-6">
+                     @Html.Label("Durumu")
+                    @Html.TextBoxFor(i=>i.status, new{@class="form-control"})
+                  </div>
+                   
+
+
+                   
+                  
+
+                   @Html.HiddenFor(i=>i.new_price)
+                   @Html.HiddenFor(i=>i.old_price)
+                   @Html.HiddenFor(i=>i.CreatedTime)
+                   @Html.HiddenFor(i=>i.image)
+                   @Html.HiddenFor(i=>i.ProductCategoryID)
+                  
+                   
+                </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+             <button class="btn btn-success" type="submit">
+                 Kaydet
+                </button>
+</form>
+
+
+
+
+
+
+
+

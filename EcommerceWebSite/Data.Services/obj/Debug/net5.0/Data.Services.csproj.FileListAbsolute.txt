@@ -1,0 +1,17 @@
+C:\Users\omerk\source\repos\EcommerceWebSite\Data.Services\bin\Debug\net5.0\Data.Services.deps.json
+C:\Users\omerk\source\repos\EcommerceWebSite\Data.Services\bin\Debug\net5.0\Data.Services.dll
+C:\Users\omerk\source\repos\EcommerceWebSite\Data.Services\bin\Debug\net5.0\Data.Services.pdb
+C:\Users\omerk\source\repos\EcommerceWebSite\Data.Services\obj\Debug\net5.0\Data.Services.csproj.AssemblyReference.cache
+C:\Users\omerk\source\repos\EcommerceWebSite\Data.Services\obj\Debug\net5.0\Data.Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\omerk\source\repos\EcommerceWebSite\Data.Services\obj\Debug\net5.0\Data.Services.AssemblyInfoInputs.cache
+C:\Users\omerk\source\repos\EcommerceWebSite\Data.Services\obj\Debug\net5.0\Data.Services.AssemblyInfo.cs
+C:\Users\omerk\source\repos\EcommerceWebSite\Data.Services\obj\Debug\net5.0\Data.Services.csproj.CoreCompileInputs.cache
+C:\Users\omerk\source\repos\EcommerceWebSite\Data.Services\obj\Debug\net5.0\Data.Services.dll
+C:\Users\omerk\source\repos\EcommerceWebSite\Data.Services\obj\Debug\net5.0\refint\Data.Services.dll
+C:\Users\omerk\source\repos\EcommerceWebSite\Data.Services\obj\Debug\net5.0\Data.Services.pdb
+C:\Users\omerk\source\repos\EcommerceWebSite\Data.Services\obj\Debug\net5.0\ref\Data.Services.dll
+C:\Users\omerk\source\repos\EcommerceWebSite\Data.Services\bin\Debug\net5.0\Data.Models.dll
+C:\Users\omerk\source\repos\EcommerceWebSite\Data.Services\bin\Debug\net5.0\DataAccessLayer.dll
+C:\Users\omerk\source\repos\EcommerceWebSite\Data.Services\bin\Debug\net5.0\Data.Models.pdb
+C:\Users\omerk\source\repos\EcommerceWebSite\Data.Services\bin\Debug\net5.0\DataAccessLayer.pdb
+C:\Users\omerk\source\repos\EcommerceWebSite\Data.Services\obj\Debug\net5.0\Data.Services.csproj.CopyComplete

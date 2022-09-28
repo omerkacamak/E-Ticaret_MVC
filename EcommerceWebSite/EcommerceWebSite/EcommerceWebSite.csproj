@@ -1,0 +1,67 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Areas\HOMEPAGE\Controllers\HomeController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.17" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.17">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.17">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+    <PackageReference Include="X.PagedList" Version="8.4.3" />
+    <PackageReference Include="X.PagedList.Mvc.Core" Version="8.4.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Data.Models\Data.Models.csproj" />
+    <ProjectReference Include="..\Data.Services\Data.Services.csproj" />
+    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\AdminUrunler\Data\" />
+    <Folder Include="Areas\AdminUrunler\Models\" />
+    <Folder Include="Areas\AdminDash\Data\" />
+    <Folder Include="Areas\AdminDash\Models\" />
+    <Folder Include="Areas\ANAKATEGORI\Data\" />
+    <Folder Include="Areas\ANAKATEGORI\Models\" />
+    <Folder Include="Areas\CONTACT\Data\" />
+    <Folder Include="Areas\CONTACT\Models\" />
+    <Folder Include="Areas\HOMEPAGE\Data\" />
+    <Folder Include="Areas\HOMEPAGE\Models\" />
+    <Folder Include="Areas\KATEGORI\Data\" />
+    <Folder Include="Areas\KATEGORI\Models\" />
+    <Folder Include="Areas\ORDER\Data\" />
+    <Folder Include="Areas\ORDER\Models\" />
+    <Folder Include="Areas\PRODUCT\Data\" />
+    <Folder Include="Areas\PRODUCT\Models\" />
+    <Folder Include="Areas\SHOPPINGCART\Data\" />
+    <Folder Include="Areas\SHOPPINGCART\Models\" />
+    <Folder Include="wwwroot\malefashion-master\css\" />
+    <Folder Include="wwwroot\malefashion-master\js\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\admin\.github\codeql\codeql-config.yml" />
+    <None Include="wwwroot\admin\.github\CONTRIBUTING.md" />
+    <None Include="wwwroot\admin\.github\dependabot.yml" />
+    <None Include="wwwroot\admin\.github\ISSUE_TEMPLATE\bug-report-for-adminlte-v3.1-x.md" />
+    <None Include="wwwroot\admin\.github\ISSUE_TEMPLATE\feature-request-for-adminlte-v4-x.md" />
+    <None Include="wwwroot\admin\.github\workflows\ci.yml" />
+    <None Include="wwwroot\admin\.github\workflows\codeql.yml" />
+    <None Include="wwwroot\admin\.github\workflows\docs.yml" />
+    <None Include="wwwroot\admin\.github\workflows\lint.yml" />
+  </ItemGroup>
+
+</Project>

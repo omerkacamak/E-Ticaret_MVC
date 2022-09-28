@@ -1,0 +1,126 @@
+﻿@using Data.Models
+@model List<MainCategory>
+
+
+
+<div class="offcanvas-menu-wrapper">
+        <div class="offcanvas__option">
+            <div class="offcanvas__links">
+                <a href="/girisyap">Giriş Yap</a>
+                <a href="#">Kayıt Ol</a>
+            </div>
+             @if(User.Identity.IsAuthenticated)
+            {
+                <span>Profilim <i class="arrow_carrot-down"></i></span>
+                <ul>
+                    <li>Siparislerim</li>
+                    <li>Ayarlar</li>
+                    
+                </ul>
+           
+            }
+             </div>
+            <div class="offcanvas__top__hover">
+           
+            
+        </div>
+        <div class="offcanvas__nav__option">
+            <a href="#" class="search-switch"><img src="/img/icon/search.png" alt=""></a>
+            <a href="#"><img src="~/img/icon/heart.png" alt=""></a>
+            <a href="#"><img src="~/img/icon/cart.png" alt=""> <span>@ViewBag.sepet</span></a>
+            <div class="price">TL0.00</div>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+        <div class="offcanvas__text">
+            <p>Güvenilir Alışıveriş</p>
+        </div>
+    </div>  
+    <!-- Telefon moduna girince Menu End -->
+
+    <!-- Header Section Begin -->
+    <header class="">
+        <div class="header__top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-7">
+                        <div class="header__top__left">
+                            <p>Güvenilir alışveriş</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-5">
+                        <div class="header__top__right">
+                            <div class="header__top__links">
+                                 <a href="/iletisim">İletişim</a>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a href="#">Sepete Git</a>
+                                 <a href="/cikis">Çıkış Yap</a>
+                                
+                            }
+                            else
+                            {
+                                 <a href="#">Giriş Yap</a>
+                                <a href="#">Kayıt Ol</a>
+                            }
+                           
+                                
+                            </div>
+                            @if(User.Identity.IsAuthenticated)
+                            {
+                                <div class="header__top__hover">
+                                <span>Profilim <i class="arrow_carrot-down"></i></span>
+                                <ul>
+                                    <li>Siparislerim</li>
+                                    <li>Ayarlar</li>
+                                    <li>USD</li>
+                                </ul>
+                            </div>
+                            }
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3">
+                    <div class="header__logo">
+                        <a href="/anasayfa"><img src="/img/logo.png" alt=""></a>
+                    </div>
+                </div> 
+                <div class="">
+                    <nav class="header__menu mobile-menu">
+                        <ul>
+                            <li class="active"><a href="/anasayfa">Ana Sayfa</a></li>
+                            
+                           @foreach (var item in Model)
+                        {
+                            <li><a href="/anakategori/@item.Name">@item.Name</a>
+                                <ul class="dropdown">
+                                   @foreach (var item2 in item.AltKategoriler)
+                                  {
+                                       <li><a href="/kategori/@item2.CategoryName">@item2.CategoryName</a></li>
+                                  }
+                                    
+                                </ul>
+                            </li>
+                        }
+                        
+                            
+                        </ul>
+                    </nav>
+
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <div class="header__nav__option">
+                        <a href="#" class="search-switch"><img src="/img/icon/search.png" alt=""></a>
+                        <a href="#"><img src="/img/icon/heart.png" alt=""></a>
+                        <a href="/sepet"><img src="/img/icon/cart.png" alt=""> <span>@ViewBag.sepet</span></a>
+                        <div class="price">@ViewBag.sepetPrice</div>
+                    </div>
+                </div>
+            </div>
+            <div class="canvas__open"><i class="fa fa-bars"></i></div>
+        </div>
+    </header>

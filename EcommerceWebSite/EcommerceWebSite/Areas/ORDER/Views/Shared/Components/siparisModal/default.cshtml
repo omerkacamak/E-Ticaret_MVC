@@ -1,0 +1,40 @@
+﻿ @using Data.Models
+ @model List<OrderDetail>
+
+
+
+   <table class="table table-bordered table-dark my-custom-scrollbar table-wrapper-scroll-y">
+       <thead>
+           <tr>
+               <th>#</th>
+               <th>
+                   Ürün Adı
+               </th>
+               <th>Adet</th>
+               <th>Fiyat(Birim)</th>
+           </tr>
+       </thead>
+       <tbody>
+           @foreach (var item in Model)
+          {
+              <tr>
+                  <td>@item.ProductItem.image</td>
+                  <td>@item.ProductItem.Product.ProductName </td>
+                  <td>@item.Adet </td>
+                  <td>@item.ProductItem.new_price.ToString("C0") </td>
+              </tr>
+          }
+       </tbody>
+   </table>
+
+<style>
+    .my-custom-scrollbar {
+            position: relative;
+            max-height: 500px;
+            overflow: auto;
+        }
+
+        .table-wrapper-scroll-y {
+            display: block;
+        }
+</style>

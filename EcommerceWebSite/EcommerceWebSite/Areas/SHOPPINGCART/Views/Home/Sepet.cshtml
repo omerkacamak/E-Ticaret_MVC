@@ -1,0 +1,157 @@
+﻿@using Data.Models
+@model ShoppingCart
+
+@{
+    ViewData["Title"] = "Sepet";
+    Layout = "~/Views/Shared/_AnaLayout.cshtml";
+
+}
+
+
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__text">
+                    <h4>Alışveriş Sepeti</h4>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+<!-- Shopping Cart Section Begin -->
+@if (Model != null)
+{
+    <section class="shopping-cart spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="shopping__cart__table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Ürün</th>
+                                    <th>Adet</th>
+                                    <th>Fiyat</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody class="adetPrice1">
+                                @foreach (var item in Model.ShoppingCartItems) // sepetteki shoppingcaritem'ler tek tek sepette gözükür
+                                {
+                                    <tr>
+                                        <td class="product__cart__item">
+                                            <div class="product__cart__item__pic">
+                                                <img src="/img/shopping-cart/cart-1.jpg" alt="">
+                                            </div>
+                                            <div class="product__cart__item__text">
+                                                <h6><b>@item.ProductItem.Product.ProductName</b> <span>(size : @item.ProductItem.Size)</span></h6>
+                                                <h5>@item.ProductItem.new_price.ToString("C0")</h5>
+                                            </div>
+                                        </td>
+                                        <td class="quantity__item">
+
+                                            <div class="quantity">
+                                                <div class="pro-qty-1">
+                                                    <input onchange="degis(@item.ShoppingCartItemsID)" class="w-25" id="@item.ShoppingCartItemsID" type="number" min="1" value="@item.Adet">
+                                                </div>
+                                            </div>
+                                        </td>
+                                        @{
+                                            var adetPrice = @item.ProductItem.new_price * @item.Adet;
+                                        }
+                                        <td class="cart__price">@adetPrice.ToString("C0")</td>
+                                        <td onclick="itemSil(@item.ShoppingCartItemsID)" class="cart__close"><i class="fa fa-close"></i></td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="continue__btn">
+                                <a href="#">Alışverişe Devam Et</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                             <a href="#" class="primary-btn">Sepeti Sil</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="cart__discount">
+                        <h6>Kupon Kodu</h6>
+                        <form action="#">
+                            <input type="text" placeholder="Kupon Kodu">
+                            <button type="submit">Uygula</button>
+                        </form>
+                    </div>
+                    <div class="cart__total sepetTutari">
+                        <h6>Sepet Tutarı</h6>
+                        <ul>
+                            <li>Toplam Sepet Tutarı <span>@Model.totalPrice.ToString("C0")</span></li>
+                            <li>Total <span>Total tutar</span></li>
+                        </ul>
+                        <a href="/siparis" class="primary-btn">Ödemeye Devam Et</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+else
+{
+    <h3>Sepetinizde hiç ürün yok </h3>
+}
+
+<!-- Shopping Cart Section End -->
+@section scripts{
+    <script>
+        var urunAdet;
+
+
+        // degis()--> ürünün adet miktarı değiştikçe ona göre database ve arayüz güncellenir
+        function degis(id) // burdaki id onchangeten gelen shopcaritem id'si!!!
+        // id aynı zamanda adetleri tutan tag'in id'si ex.(<input id=this.id)
+        {
+            var tagAdet = $(`#${id}`).val(); // adetleri tutan html taginin id'leri dinamik şekilde gelecek
+
+            $.ajax({
+                type: "GET",
+                url: "/SHOPPINGCART/Home/UpdateCart?shopitemid=" + id + "&adet=" + tagAdet, // updateCart'a shopcartitemid olarak id
+                //ve degisen adet olarak da tagAdet'i gönderiyoruz
+                success: function(data) {
+
+                    //document.getElementById("pricespan").innerHTML = data;
+                    $(".sepetTutari").load(" .sepetTutari > *"); // total sepet tutarını günceller
+
+                    $(".adetPrice1").load(" .adetPrice1 > "); //  sepetteki ürünler tablosunu günceller adete göre fiyat
+
+
+                }
+            });
+        }
+
+
+        //itemsil()---> ürün sildikçe database ve arayüz güncellenir
+        function itemSil(id) {
+            $.ajax({
+                type: "GET",
+                url: "/SHOPPINGCART/Home/DeleteCartItem?id=" + id,
+                success: function(data) {
+
+                    $(".sepetTutari").load(" .sepetTutari > *"); // total sepet tutarını günceller
+
+                    $(".adetPrice1").load(" .adetPrice1 > "); //  sepetteki ürünler tablosunu güncelleri adete göre fiyat
+
+                }
+            });
+        }
+
+    </script>
+                        }

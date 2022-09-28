@@ -1,0 +1,23 @@
+﻿@using Data.Models.WriteSql
+@model List<ProductItemSql>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+
+
+
+@foreach (var item in Model )
+{
+    <h4>@item.ProductName - - - - -  @item.CategoryName </h4>
+    <h3>@item.CategoryID  - @item.Color - @item.Discount  -  @item.DiscountStatus  -  @item.image  -  new price :@item.new_price</h3>
+    <h3>@item.StokAdedi </h3>
+    <h1>@item.image</h1>
+
+    <hr />
+}

@@ -1,0 +1,48 @@
+﻿@using Data.Models
+@model List<ProductItem>
+@foreach (var item in Model)
+{
+    
+
+ <div class="col-lg-4 col-md-6 col-sm-6">
+        <div class="product__item sale">
+            <div class="product__item__pic " style="background-image:url(/img/product/product-3.jpg)">
+                @if (@item.DiscountStatus == true)
+                {
+                    <span class="label">İNDİRİM</span>
+                }
+                <ul class="product__hover">
+                    <li><a href="#"><img src="/img/icon/heart.png" alt=""></a></li>
+                    <li>
+                        <a href="/urun/@item.Product.ProductName"><img src="/img/icon/compare.png" alt=""> <span>Ürüne Git</span></a>
+                    </li>
+                    <li><a href="#"><img src="/img/icon/search.png" alt=""></a></li>
+                </ul>
+            </div>
+            <div class="product__item__text">
+                <h6>@item.Product.ProductName</h6>
+                <a onclick="sepetekle(@item.ProductItemID)" class="add-cart">+ Sepete Ekle</a>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                    <i class="fa fa-star-o"></i>
+                </div>
+                <h5>@item.new_price.ToString("C0")   </h5>
+               <h6 class="text-info">(@item.SatilanMiktar adet satıldı)</h6>
+                <div class="product__color__select">
+                    <label for="pc-7">
+                        <input type="radio" id="pc-7">
+                    </label>
+                    <label class="active black" for="pc-8">
+                        <input type="radio" id="pc-8">
+                    </label>
+                    <label class="grey" for="pc-9">
+                        <input type="radio" id="pc-9">
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    }

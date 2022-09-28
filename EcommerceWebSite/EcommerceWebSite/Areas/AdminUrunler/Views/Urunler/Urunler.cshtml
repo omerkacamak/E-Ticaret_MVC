@@ -1,0 +1,209 @@
+﻿@using Data.Models
+@model List<Product>
+
+@{
+    ViewData["Title"] = "Urunler";
+    Layout = "~/Views/Shared/_layAdmin.cshtml";
+}
+
+<div class="card" id="tablo">
+    <div class="card-header">
+        <button class="btn btn-success">Ürün Ekle </button>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        <table id="example1" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Stok Kodu</th>
+                    <th>Ürün Adı</th>
+                    <th>Size</th>
+                    <th>Renk</th>
+                    <th>İndirim Durumu</th>
+                    <th>İndirim Yüzdesi</th>
+                    <th>İndirimsiz Fiyat</th>
+                    <th>İndirimli Fiyat</th>
+                    <th>Stok Adedi</th>
+                    <th>Satılan Miktar</th>
+                    <th>Alt Kategori</th>
+                    <th>Üst Kategori</th>
+                    <th>İşlem</th>
+
+
+
+                </tr>
+            </thead>
+            <tbody id="badi">
+                @foreach (var item in Model)
+                {
+                    @foreach (var item2 in item.ProductItems)
+                    {
+                        <tr>
+                            <td> @item2.ProductItemID </td>
+                            <td> @item.StokKodu </td>
+                            <td> @item.ProductName </td>
+                            <td> @item2.Size </td>
+                            <td> @item2.Color </td>
+                            <td> @item2.DiscountStatus</td>
+                            <td> %@item2.Discount</td>
+                            <td> @item2.price.ToString("C0")</td>
+                            <td> @item2.new_price.ToString("C0")</td>
+                            <td> @item2.StokAdedi</td>
+                            <td> @item2.SatilanMiktar</td>
+                            <td> @item.Category.CategoryName</td>
+                            <td> @item.Category.AnaKategori.Name</td>
+                            <td>
+
+
+                                <a id="@item2.ProductItemID" onclick="sil(@item2.ProductItemID)">
+                                    Sil   <i class="fas fa-times"></i>
+                                </a>
+
+                                
+
+                                <a class="mx-5" href="#ex2" rel="modal:open" onclick="modalAc(@item2.ProductItemID)" data-toggle="modal" data-target="#modal-default">
+                                    Düzenle   <i class="nav-icon fas fa-edit"></i>
+                                </a>
+
+
+                            </td>
+
+
+
+
+                        </tr>
+                    }
+                }
+
+
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>ID</th>
+                    <th>Stok Kodu</th>
+                    <th>Ürün Adı</th>
+                    <th>Size</th>
+                    <th>Renk</th>
+                    <th>İndirim Durumu</th>
+                    <th>İndirim Yüzdesi</th>
+                    <th>İndirimsiz Fiyat</th>
+                    <th>İndirimli Fiyat</th>
+                    <th>Stok Adedi</th>
+                    <th>Satılan Miktar</th>
+                    <th>Alt Kategori</th>
+                    <th>Üst Kategori</th>
+                    <th>İşlem</th> 
+
+
+
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>
+
+
+@*<div id="ex2" class="modal modalAc modal-dialog-scrollable">
+        @await Component.InvokeAsync("urunGuncelle",28)
+        <a href="#" rel="modal:close">Close</a>
+    </div>
+   <a href="#ex2" rel="modal:open" onclick="modalAc(1)" class="btn btn-danger">Detaylar</a>
+*@
+
+<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
+    Launch Default Modal
+</button>
+<div class="modal fade" id="modal-default">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Default Modal</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @await Component.InvokeAsync("urunGuncelle",28)
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+@section script {
+
+    <script>
+
+        function sil(id) {
+            var btn = $('#' + id)
+            if (confirm("Silmek istediğinize emin misiniz")) {
+                $.ajax({
+                    type: "GET",
+                    url: "/admin/urunsil/" + id,
+                    success: function(data) {
+                        //$("#badi").load(" #badi > *");
+                        window.location.reload()
+                        // btn.parent().parent().remove();
+
+
+                    }
+                });
+            }
+
+        }
+
+        function modalAc(id) {
+            console.log("bastim")
+            $.ajax({
+                type: "GET",
+                url: "/admin/guncelleComp/" + id,
+                success: function(data) {
+
+                    $('.modal-body').html(data)
+                }
+            });
+        }
+    </script>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

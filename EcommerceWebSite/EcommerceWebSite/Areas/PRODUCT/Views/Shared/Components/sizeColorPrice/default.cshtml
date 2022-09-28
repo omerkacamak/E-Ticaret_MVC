@@ -1,0 +1,17 @@
+﻿@using Data.Models
+@model ProductItem
+
+
+<form method="post" action="/sepetpost">
+  
+
+
+
+<h3>@Model.new_price.ToString("C0") <span>@if (Model.DiscountStatus == true) 
+        {
+            @Model.old_price.ToString("C0")
+        }</span></h3>
+
+
+</form>
+

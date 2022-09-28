@@ -1,0 +1,94 @@
+﻿@using Data.Models
+@model MainCategory
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AnaLayout.cshtml";
+}
+ 
+
+
+
+    @if (Model != null)
+{
+   
+
+    <!-- About Section Begin -->
+    <section class="testimonial">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6 p-0">
+                    <div class="testimonial__text">
+                        <span class="icon_quotations"></span>
+                        <h1>@Model.Name</h1>
+                        <div class="testimonial__author">
+                            
+                            <div class="testimonial__author__text">
+                                <h5>Elektroniğe dair ne varsa</h5>
+                                <p>İnceleyin hemen satın almaya başlayın</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 p-0">
+                    <div class="testimonial__pic set-bg" data-setbg="/img/about/testimonial-pic.jpg"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- About Section End -->
+
+
+
+    <!-- Alt Kategoriler Begin -->
+    <section class="team spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <span>Alt Kategoriler</span>
+                        <h2>Kategoriler Göz Atın</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                @foreach (var item in Model.AltKategoriler)
+                {
+                    <div  class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="team__item card h-50 " >
+                        <img src="/img/product/product-1.jpg" alt="">
+                        <h4><a href="/kategori/@item.CategoryName">@item.CategoryName</a></h4>
+                        <span>@item.CategoryDescription</span>
+                    </div>
+                </div>
+                }
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Alt Kategoriler End -->
+
+
+
+      <!-- Alt kategorilere özel ürünler  -->
+      <hr />
+       <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <span>Seveceğiniz ürünler</span>
+                        <h2>Fırsatları kaçırmayın</h2>
+                    </div>
+                </div>
+            </div>
+    @await Component.InvokeAsync("anaProductsComp")
+    <!-- Alt kategorilere özel ürünler End -->
+
+    
+
+
+
+
+    
+
+
+} 

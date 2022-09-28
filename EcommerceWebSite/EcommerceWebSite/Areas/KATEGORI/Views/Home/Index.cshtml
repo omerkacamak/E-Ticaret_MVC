@@ -1,0 +1,232 @@
+﻿@using Data.Models
+@model Category
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AnaLayout.cshtml";
+    var paginationCount = 3;
+}
+@section style {
+    <style>
+    a{
+        cursor:pointer
+    }
+</style>
+}
+
+<section class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__text">
+                    <h4>@Model.CategoryName.ToUpper()</h4>
+                    <div class="breadcrumb__links">
+                        <a href="./index.html">@ViewBag.ustKategori</a>
+                        <span>@Model.CategoryName</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<section class="shop spad">
+    <div class="container">
+        <div class="row">
+            <!--SOL SEÇİM MENU -->
+            <div class="col-lg-3">
+                <div class="shop__sidebar">
+                    <div class="shop__sidebar__search">
+                        <form action="#">
+                            <input type="text" placeholder="Search...">
+                            <button type="submit"><span class="icon_search"></span></button>
+                        </form>
+                    </div>
+                    <div class="shop__sidebar__accordion">
+                        <div class="accordion" id="accordionExample">
+                            <div class="card">
+                                <div class="card-heading">
+                                    <a data-toggle="collapse" data-target="#collapseOne">Kategoriler</a>
+                                </div>
+                                <div id="collapseOne" class="collapse " data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="shop__sidebar__categories">
+                                            <ul class="nice-scroll">
+                                                <li><a href="#">Erkek (20)</a></li>
+                                                <li><a href="#">Women (20)</a></li>
+                                                <li><a href="#">Bags (20)</a></li>
+                                                <li><a href="#">Clothing (20)</a></li>
+                                                <li><a href="#">Shoes (20)</a></li>
+                                                <li><a href="#">Accessories (20)</a></li>
+                                                <li><a href="#">Kids (20)</a></li>
+                                                <li><a href="#">Kids (20)</a></li>
+                                                <li><a href="#">Kids (20)</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-heading">
+                                    <a data-toggle="collapse" data-target="#collapseThree">Fiyat Aralığı</a>
+                                </div>
+                                <div id="collapseThree" class="collapse show" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="shop__sidebar__pricex">
+                                            <ul>
+                                                <li><a class="" onclick="fiyat(0,500)">₺0 - ₺500</a></li>
+                                                <li><a onclick="fiyat(500,1000)">₺500 - ₺1000</a></li>
+                                                <li><a onclick="fiyat(1000,2000)">₺1000 - ₺2000</a></li>
+                                                <li><a onclick="fiyat(2000,5000)">₺2000 - ₺5000</a></li>
+                                                <li><a onclick="fiyat(5000,15000)">₺5000 - ₺15000</a></li>
+                                                <li><a onclick="fiyat(15000,15000000)">₺15000+</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-heading">
+                                    <a data-toggle="collapse" data-target="#collapseFour">Size</a>
+                                </div>
+                                <div id="collapseFour" class="collapse show" data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        <div class="shop__sidebar__size">
+                                            <label for="xs">
+                                                xs
+                                                <input type="radio" id="xs">
+                                            </label>
+                                            <label for="sm">
+                                                s
+                                                <input type="radio" id="sm">
+                                            </label>
+                                            <label for="md">
+                                                m
+                                                <input type="radio" id="md">
+                                            </label>
+                                            <label for="xl">
+                                                xl
+                                                <input type="radio" id="xl">
+                                            </label>
+                                            <label for="2xl">
+                                                2xl
+                                                <input type="radio" id="2xl">
+                                            </label>
+                                            <label for="xxl">
+                                                xxl
+                                                <input type="radio" id="xxl">
+                                            </label>
+                                            <label for="3xl">
+                                                3xl
+                                                <input type="radio" id="3xl">
+                                            </label>
+                                            <label for="4xl">
+                                                4xl
+                                                <input type="radio" id="4xl">
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+
+
+                            <button onclick="pagination(1)" class="btn primary-btn"> Filtre Kaldır</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--SOL SEÇİM MENU  END -->
+
+
+
+
+            <div class="col-lg-9">
+                <!--Fiyata göre listele -->
+                <div class="shop__product__option">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="shop__product__option__left">
+                                <p>Showing 1–12 of 126 results</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="shop__product__option__right">
+                                <p>Sort by Price:</p>
+                                <select>
+                                    <option value="">Low To High</option>
+                                    <option value="">$0 - $55</option>
+                                    <option value="">$55 - $100</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Fiyata göre listele -->
+                <!--Ürünler-->
+                <div class="row" id=urun>
+
+                    @await Component.InvokeAsync("urunler",new {id=@Model.CategoryID,page=1})
+
+
+
+
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="product__pagination">
+                            @for (var i = 1; i <= paginationCount; i++)
+                            {
+                                <a onclick="pagination(@i)" class="" style="cursor:pointer">@i</a>
+                            }
+
+
+                            <span>... @ViewBag.kacPage ...</span>
+                            <a href="#">21</a>
+                        </div>
+                    </div>
+                </div>
+                <!--Ürünler end-->
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+@section scripts {
+    <script>
+        function pagination(id) { // sayfalama
+            $.ajax({
+                type: "GET",
+                url: "/KATEGORI/Home/urunlerComp?id=@Model.CategoryID&page=" + id,
+                success: function(data) {
+                    document.getElementById("urun").innerHTML = data;
+                }
+            })
+        }
+
+        function fiyat(price1, price2) {
+            $.ajax({
+                type:"GET",
+                url: "/KATEGORI/Home/productSearch?id=@Model.CategoryID&price1=" + price1 + "&price2=" + price2+ "&page=1",
+                 success: function(data) {
+                    document.getElementById("urun").innerHTML = data;
+                   
+                }
+            })
+        }
+    </script>
+                              }

@@ -1,0 +1,98 @@
+﻿@using Data.Models
+@model  IEnumerable<ProductItem>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AnaLayout.cshtml";
+    var haftaList = new List<ProductItem>();
+    foreach (var item in Model)
+    {
+        haftaList.Add(item);
+    }
+    
+}
+<!--SLIDER-->
+@await Component.InvokeAsync("SliderBar")
+<!--SLIDER END -->
+<!--ana kategorilerden 3ünü getir -->
+@await Component.InvokeAsync("kategorilerden3u")
+
+<!--ana kategorilerden 3ünü getir  END-->
+<!--Sıcak Satışlar best seller yeni gelenler  -->
+ <div class="row">
+            <div class="col-lg-12">
+                <ul class="filter__controls">
+                    <li onclick="yenigelen(1)" class="active" >Yeni Gelenler</li>
+                    <li  onclick="yenigelen(2)" >Çok Satanlar</li>
+                    <li  onclick="yenigelen(3)" >Anlık Satılanlar</li>
+                </ul>
+            </div>
+        </div>
+
+<section class="product spad">
+    <div class="container">
+       
+        <div id="yeni" class="row product__filter ">
+            
+            @await Component.InvokeAsync("yenigelenler",1)
+        </div>
+    </div>
+</section>
+<!--Sıcak Satışlar best seller yeni gelenler END  -->
+
+
+
+
+<!--HAFTANIN URUNLERI (3 TANE)-->
+
+
+<hr />
+ <div class="col-lg-12">
+                <ul class="filter__controls">
+                    <li class="active" onclick="hafta(@haftaList[0].ProductItemID)">Haftanın Ürünü</li>
+                    <li onclick="hafta(@haftaList[1].ProductItemID)">Fırsatı kaçırma</li>
+                    <li onclick="hafta(@haftaList[2].ProductItemID)">Son ürünler</li>
+                   
+                </ul>
+            </div>
+<section class="categories spad">
+    <div class="container">
+        <div class="row" id="deneme1">
+            
+            @await Component.InvokeAsync("haftaninUrunleri",@haftaList[0].ProductItemID)
+
+        </div>
+    </div>
+</section>
+
+<!--HAFTANIN URUNLERI (3 TANE) end-->
+
+
+
+<!--YENİ TRENDLER-->
+
+
+<!--YENİ TRENDLER END-->
+@section scripts{
+    <script>
+        function hafta(id) {
+            $.ajax({
+                type: "GET",
+                url: "/HOMEPAGE/Home/HaftaninUrunleriComp/"+id,
+                success: function (data) {
+                    document.getElementById("deneme1").innerHTML = data;
+                }
+            });
+        }
+        function yenigelen(id) {
+            $.ajax({
+                type: "GET",
+                url: "/HOMEPAGE/Home/yeniGelenler/"+id,
+                success: function (data) {
+                    document.getElementById("yeni").innerHTML = data;
+                }
+            });
+        }
+        
+    </script>
+                    }
